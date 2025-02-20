@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 
 # App Title
 st.title("Portfolio Optimization")
-st.subheader("...")
+#st.subheader("...")
 
 # Background and Styling
 st.markdown(
@@ -33,13 +33,13 @@ st.markdown(
 st.image("https://source.unsplash.com/800x400/?stocks,market", use_container_width=True)
 
 # Navigation Button
-if st.button("Optimize Investments Here"):
-    st.session_state["page"] = "optimization"
-    st.rerun()
+if "page" not in st.session_state:
+    if st.button("Optimize Investments Here"):
+        st.session_state["page"] = "optimization"
+        st.rerun()
 
 # Optimization Page
 if "page" in st.session_state and st.session_state["page"] == "optimization":
-    st.title("Portfolio Optimization")
     st.sidebar.header("User Inputs")
     principal = st.sidebar.number_input("Enter Principal Capital ($)", min_value=0.0, value=1000.0, step=100.0)
     tickers = st.sidebar.text_area("Enter Stock Tickers (comma-separated)")
